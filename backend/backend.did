@@ -1,0 +1,27 @@
+type Time = int;
+type Result_1 = 
+ variant {
+   err: text;
+   ok: nat;
+ };
+type Result = 
+ variant {
+   err: text;
+   ok;
+ };
+type File = 
+ record {
+   createdAt: Time;
+   id: nat;
+   isFolder: bool;
+   name: text;
+   size: nat;
+ };
+service : {
+  addFile: (text, nat, bool) -> (Result_1);
+  deleteFile: (nat) -> (Result);
+  getFiles: () -> (vec File) query;
+  healthCheck: () -> (text) query;
+  init: () -> ();
+  throwError: () -> ();
+}
